@@ -15,8 +15,8 @@ body{margin:0;color:#333;background:#fff;font:18px/1.8 Georgia,serif}header{padd
 document.getElementById('theme').onclick=()=>chrome.storage.local.set({enabled:!document.documentElement.hasAttribute('data-substack-editor-dark')});
 // Simulate a host editor shortcut that would break Backspace if a comment
 // textarea's composed keyboard event escaped its shadow root.
-document.addEventListener('keydown', event => {
+window.addEventListener('keydown', event => {
   if (event.key === 'Backspace') event.preventDefault();
-});
+}, true);
 </script>
 </html>

@@ -3,6 +3,44 @@
   const A = globalThis.SubstackAnchors;
   const HIGHLIGHT = 'substack-draft-comments';
   let session = null;
+
+  // Substack can cancel Backspace during capture, before a shadow-root
+  // textarea receives the event. Handle deletion at the earliest extension
+  // boundary so comment editing remains independent of the host editor.
+  addEventListener('keydown', event => {
+    if (event.key !== 'Backspace' || event.isComposing) return;
+    // A closed shadow root deliberately hides its textarea from listeners on
+    // window; the event is retargeted to our host. The active textarea is read
+    // from inside the session, where the closed root remains accessible.
+    if (!event.composedPath().some(node => node?.hasAttribute?.('data-sdm-comments'))) return;
+    session?.deleteBackward(event);
+  }, true);
+
+  function deleteBackward(input, event) {
+    if (!(input instanceof HTMLTextAreaElement) || input.disabled || input.readOnly) return false;
+    let start = input.selectionStart;
+    const end = input.selectionEnd;
+    if (start === end && start > 0) {
+      const prefix = input.value.slice(0, start);
+      if (event.metaKey) {
+        start = Math.max(prefix.lastIndexOf('\n') + 1, 0);
+      } else if (event.altKey || event.ctrlKey) {
+        const match = prefix.match(/(?:\s+|\S+)\s*$/u);
+        start -= match ? match[0].length : 1;
+      } else {
+        const character = Array.from(prefix).pop();
+        start -= character ? character.length : 1;
+      }
+    }
+    if (start !== end) {
+      input.setRangeText('', start, end, 'end');
+      input.dispatchEvent(new InputEvent('input', {
+        bubbles: true, composed: true, inputType: 'deleteContentBackward'
+      }));
+    }
+    return true;
+  }
+
   const documentKey = () => {
     const match = location.pathname.match(/^\/publish\/post\/(\d+)\/?$/);
     return match ? location.hostname + '/publish/post/' + match[1] : null;
@@ -387,7 +425,14 @@
     chrome.storage.onChanged.addListener(storageChanged);
     const scan = setInterval(bindEditor, 1000);
     layout(); bindEditor(); refresh();
-    return { doc, destroy() {
+    return { doc,
+      deleteBackward(event) {
+        const input = shadow.activeElement;
+        if (!deleteBackward(input, event)) return;
+        event.preventDefault();
+        event.stopImmediatePropagation();
+      },
+      destroy() {
       flushAnchors(); disposed = true; abort.abort(); observer?.disconnect();
       clearInterval(scan); clearTimeout(changeTimer); clearTimeout(anchorTimer);
       chrome.storage.onChanged.removeListener(storageChanged);
