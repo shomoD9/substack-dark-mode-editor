@@ -11,5 +11,12 @@ body{margin:0;color:#333;background:#fff;font:18px/1.8 Georgia,serif}header{padd
 <article class="ProseMirror" role="textbox" aria-label="Draft body" contenteditable="true"><p>A good draft begins with a little room to think. Leave a comment on this sentence and come back to it later.</p><p>The quiet room makes space for an unfinished thought. Some ideas need another pass before they find their shape.</p><p>Comments stay outside the article. Add a reply, resolve a thread, or reopen it when you are ready to return.</p><p>Try inserting a word before the highlighted text. The comment should follow its words as the draft changes.</p><p>Nothing here is sent to Substack. This page runs the actual extension scripts with a local Chrome API substitute.</p></article>
 <footer>Local fixture · Reload to check persistence. This does not verify Google’s device-to-device sync.</footer></main>
 <script src="/tests/browser-mock.js"></script><script src="/extension/background.js"></script><script src="/extension/content.js"></script><script src="/extension/anchors.js"></script><script src="/extension/comments.js"></script>
-<script>document.getElementById('theme').onclick=()=>chrome.storage.local.set({enabled:!document.documentElement.hasAttribute('data-substack-editor-dark')});</script>
+<script>
+document.getElementById('theme').onclick=()=>chrome.storage.local.set({enabled:!document.documentElement.hasAttribute('data-substack-editor-dark')});
+// Simulate a host editor shortcut that would break Backspace if a comment
+// textarea's composed keyboard event escaped its shadow root.
+document.addEventListener('keydown', event => {
+  if (event.key === 'Backspace') event.preventDefault();
+});
+</script>
 </html>

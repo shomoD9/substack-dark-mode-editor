@@ -214,6 +214,13 @@
       const input = element('textarea'); input.placeholder = placeholder; input.setAttribute('aria-label', placeholder);
       input.maxLength = 1500; input.value = drafts.get(key) || '';
       input.addEventListener('input', () => drafts.set(key, input.value));
+      // Substack installs editor-wide keyboard handlers on the page. Events from
+      // this shadow-root textarea are composed and otherwise reach those
+      // handlers, which can cancel Backspace and other normal text editing keys.
+      // Keep comment editing inside the comment UI.
+      for (const eventName of ['keydown', 'keyup', 'beforeinput']) {
+        input.addEventListener(eventName, event => event.stopPropagation());
+      }
       const send = button(actionLabel, async () => {
         const body = input.value.trim(); if (!body) { input.focus(); return; }
         await submit(body); drafts.delete(key); render();
