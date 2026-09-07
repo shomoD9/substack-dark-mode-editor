@@ -1,0 +1,46 @@
+{
+  "manifest_version": 3,
+  "name": "Substack Editor Dark Mode",
+  "version": "1.1.0",
+  "description": "A lightweight, local-only dark appearance for the Substack draft editor.",
+  "permissions": [
+    "storage"
+  ],
+  "action": {
+    "default_title": "Substack Editor Dark Mode",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://*.substack.com/*"
+      ],
+      "js": [
+        "content.js",
+        "anchors.js",
+        "comments.js"
+      ],
+      "css": [
+        "editor.css"
+      ],
+      "run_at": "document_start"
+    }
+  ],
+  "minimum_chrome_version": "105",
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA+dmxq55+7GTEPxz+o7OgkyzMLoHIAz3lGc1TgHe6kd3I6IF1mpvHjxhnmxmzk04g8Dn8ROHchdJUWyEnLExpl7J5LzLveefm87Z6USgYiFHEJso7DfX4qusgXByl277qFoElp3KpzRYZ1YaZt6D3c21gtWlMN8lJxG6/z2vNo3LMpsjiDarn3rArGEqe03+CRjNbroMV7aXVwPzOyoJkVUy+ZCCYOpDWV2AQl/SXysLd8Z51gE7JxRMxWUIBAT+xbMkvkGS7LBGl7vdYxVWXwtAj494it0RP5qSrKlYzCRRfl67sodFWb+pqRt8a7Wkmd979BEkcTgaKNhpiUm57LwIDAQAB",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  }
+}

@@ -1,0 +1,30 @@
+/* Paint-only changes: nothing is inserted into the saved article DOM.
+   Inversion handles Substack's changing/generated class names, menus and icons.
+   Pure inversion can be reversed exactly for media without hue clipping. */
+@media screen {
+  html[data-substack-editor-dark] {
+    background: #e7e7e7 !important;
+    color-scheme: light !important;
+    filter: invert(1) !important;
+    min-height: 100%;
+  }
+
+  html[data-substack-editor-dark] body {
+    background-color: #e7e7e7 !important;
+  }
+
+  /* Applying the inverse once more restores media. Do not invert every SVG:
+     toolbar SVG icons need the dark-mode treatment to remain visible.
+     Exclude media nested in another counter-inverted container. */
+  html[data-substack-editor-dark] :is(img, video, canvas, iframe, object, embed, [role="img"]):not(:is([role="img"], object) *) {
+    filter: invert(1) !important;
+  }
+}
+
+/* Comment UI is isolated in a shadow root and counter-inverted in dark mode. */
+@media screen {
+  html[data-substack-editor-dark] [data-sdm-comments] { filter: invert(1) !important; }
+  ::highlight(substack-draft-comments) { background-color: #f2cf8180; }
+  html[data-substack-editor-dark] ::highlight(substack-draft-comments) { background-color: #16367880; }
+}
+@media print { [data-sdm-comments] { display: none !important; } }
