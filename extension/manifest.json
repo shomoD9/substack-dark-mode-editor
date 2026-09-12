@@ -1,13 +1,13 @@
 {
   "manifest_version": 3,
-  "name": "Substack Editor Dark Mode",
-  "version": "1.1.2",
-  "description": "A lightweight, local-only dark appearance for the Substack draft editor.",
+  "name": "Nightdraft for Substack",
+  "version": "1.2.0",
+  "description": "A dark Substack writing workspace with private margin notes that stay outside your published draft.",
   "permissions": [
     "storage"
   ],
   "action": {
-    "default_title": "Substack Editor Dark Mode",
+    "default_title": "Nightdraft for Substack",
     "default_popup": "popup.html",
     "default_icon": {
       "16": "icons/icon16.png",

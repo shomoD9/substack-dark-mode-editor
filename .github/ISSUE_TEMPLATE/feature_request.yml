@@ -1,0 +1,32 @@
+# This form keeps feature proposals tied to writer needs and the extension's narrow purpose.
+name: Feature request
+description: Propose a focused improvement to the Substack drafting experience.
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Writer problem
+      description: Describe what is difficult in the current workflow.
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+      description: Describe the behaviour you would expect from Nightdraft.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Current workaround
+      description: Explain how you handle this today, if applicable.
+  - type: checkboxes
+    id: scope
+    attributes:
+      label: Scope check
+      options:
+        - label: This request concerns the Substack draft-writing experience.
+          required: true

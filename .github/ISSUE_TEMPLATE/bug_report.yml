@@ -1,0 +1,49 @@
+# This form gathers synthetic reproduction evidence without inviting private draft text.
+name: Bug report
+description: Report reproducible Nightdraft behaviour that appears incorrect.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: "Do not paste private draft text, account details, or exported comments. Use synthetic text when reproducing the issue."
+  - type: input
+    id: version
+    attributes:
+      label: Nightdraft version
+      placeholder: "For example: 1.2.0"
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Browser and operating system
+      placeholder: "For example: Chrome 140 on macOS 15"
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: Use a test draft or synthetic passage.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour
+    validations:
+      required: true
+  - type: checkboxes
+    id: privacy
+    attributes:
+      label: Privacy check
+      options:
+        - label: I removed private draft text, personal information, and authentication data.
+          required: true

@@ -1,14 +1,35 @@
-# Substack Editor Dark Mode
+# Nightdraft for Substack
 
-A small Chrome extension for a dark Substack draft editor, with private text comments. No build step, accounts to create, or third-party application server.
+**Dark mode and private margin notes for Substack writers.**
+
+[![Tests](https://github.com/shomoD9/substack-dark-mode-editor/actions/workflows/tests.yml/badge.svg)](https://github.com/shomoD9/substack-dark-mode-editor/actions/workflows/tests.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-b98a60.svg)](LICENSE)
+
+Nightdraft turns the Substack draft editor into a quieter writing space. It adds a dark appearance and lets you attach private notes to passages without inserting anything into the article.
+
+There is no Nightdraft account, analytics service, build step, or application server. The extension is open source and runs in Chrome. Nightdraft is an independent project and is not affiliated with or endorsed by Substack.
+
+## What it does
+
+- Darkens the Substack draft editor and its controls.
+- Attaches private comments to selected draft text.
+- Keeps replies, resolved threads, and reattachment context in Chrome storage.
+- Uses Chrome Sync when it is enabled, without sending drafts to a Nightdraft server.
+- Leaves the article DOM and published post unchanged.
 
 ## Install or update
+
+### Chrome Web Store
+
+The public Chrome Web Store listing is being prepared. Once it is available, its installation link will appear here.
+
+### Manual installation
 
 1. Download this repository and unzip it, or clone it.
 2. Open `chrome://extensions` in desktop Chrome and enable **Developer mode**.
 3. Choose **Load unpacked** and select the repository's **extension** folder.
 4. Refresh your Substack draft. Dark mode starts automatically.
-5. Pin **Substack Editor Dark Mode** from Chrome's extensions menu for the on/off switch.
+5. Pin **Nightdraft for Substack** from Chrome's extensions menu for the on/off switch.
 
 Keep the folder in place. For updates, replace its files, click the extension's **Reload** button, then refresh Substack. Version 1.1 introduces a stable manifest `key`; when upgrading from 1.0, Chrome may give this version a new extension ID. If the old version remains listed, remove that older entry. Its dark-mode preference may reset. Subsequent 1.1 installations share the same ID.
 
@@ -68,3 +89,13 @@ Automated checks cover route scoping, preferences, anchor movement, Unicode, rep
 **Still requiring live verification:** the current authenticated Substack editor, an actual installed extension context, and Google Sync between two desktop devices. The fixture is not evidence of those integrations.
 
 To regenerate icons, run `python3 scripts/icons.py` with Pillow installed. The installed extension has no runtime dependencies.
+
+## Contributing and support
+
+Bug reports and focused improvements are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request. Please use [GitHub Issues](https://github.com/shomoD9/substack-dark-mode-editor/issues) for reproducible bugs and feature proposals.
+
+Do not include private draft text in a public issue. Report security concerns using the process in [SECURITY.md](SECURITY.md).
+
+## Privacy and license
+
+Nightdraft's data handling is described in [PRIVACY.md](PRIVACY.md). The project is available under the [MIT License](LICENSE).

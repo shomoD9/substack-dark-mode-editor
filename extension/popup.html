@@ -1,17 +1,26 @@
 <!doctype html>
+<!--
+  Nightdraft's toolbar popup introduces the extension and controls its local
+  appearance preference. popup.js supplies the saved state, while popup.css
+  provides the compact editorial presentation declared by manifest.json.
+-->
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Substack Editor Dark Mode</title>
+    <title>Nightdraft for Substack</title>
     <link rel="stylesheet" href="popup.css">
   </head>
   <body>
+    <!-- The product identity also explains the private-note feature that appears inside saved drafts. -->
     <div class="moon" aria-hidden="true"><img src="icons/icon48.png" width="36" height="36" alt=""></div>
-    <h1>A quieter place to write.</h1>
+    <h1>Nightdraft</h1>
+    <p class="note">Dark mode and private margin notes for Substack writers.</p>
+    <!-- The switch changes only Nightdraft's local appearance preference. -->
     <label><span>Dark editor</span><input id="enabled" type="checkbox" role="switch" checked disabled></label>
     <p id="status" role="status">Loading preference…</p>
-    <p class="note">Only changes how drafts look on your screen. Turn off to check original colors or preview your post.</p>
+    <!-- This instruction exposes the in-editor workflow without adding a separate onboarding screen. -->
+    <p class="note">In a saved draft, select text and choose <strong>＋ Comment</strong>. Your notes stay outside the article.</p>
     <script src="popup.js"></script>
   </body>
 </html>

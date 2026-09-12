@@ -1,0 +1,6 @@
+# Security and conduct reports need a private channel; general support remains in issue forms.
+blank_issues_enabled: false
+contact_links:
+  - name: Security or private conduct report
+    url: https://github.com/shomoD9/substack-dark-mode-editor/security/advisories/new
+    about: Report sensitive security or conduct concerns privately.

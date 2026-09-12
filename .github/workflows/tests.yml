@@ -1,0 +1,29 @@
+# This workflow verifies Nightdraft's dependency-free logic on every proposed
+# change. GitHub displays its result in the README badge and pull requests.
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout makes the extension and its synthetic fixtures available to Node.
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      # A current LTS runtime supplies Node's built-in test runner; no packages are installed.
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # The tests cover route scoping, anchors, storage recovery, and sync conflict behaviour.
+      - name: Run tests
+        run: node --test tests/*.test.cjs

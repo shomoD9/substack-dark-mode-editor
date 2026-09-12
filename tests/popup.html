@@ -1,17 +1,25 @@
 <!doctype html>
+<!--
+  This browser fixture mirrors extension/popup.html while loading the local
+  Chrome API substitute before popup.js. It is served by tests/serve.py for
+  visual checks without installing the extension.
+-->
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Substack Editor Dark Mode</title>
+    <title>Nightdraft for Substack</title>
     <link rel="stylesheet" href="/extension/popup.css">
   </head>
   <body>
+    <!-- Keep the visible fixture markup aligned with the production popup. -->
     <div class="moon" aria-hidden="true"><img src="/extension/icons/icon48.png" width="36" height="36" alt=""></div>
-    <h1>A quieter place to write.</h1>
+    <h1>Nightdraft</h1>
+    <p class="note">Dark mode and private margin notes for Substack writers.</p>
     <label><span>Dark editor</span><input id="enabled" type="checkbox" role="switch" checked disabled></label>
     <p id="status" role="status">Loading preference…</p>
-    <p class="note">Only changes how drafts look on your screen. Turn off to check original colors or preview your post.</p>
+    <p class="note">In a saved draft, select text and choose <strong>＋ Comment</strong>. Your notes stay outside the article.</p>
+    <!-- The mock must run first so the unchanged production controller can read Chrome storage. -->
     <script src="/tests/browser-mock.js"></script><script src="/extension/popup.js"></script>
   </body>
 </html>
