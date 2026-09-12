@@ -4,6 +4,10 @@ This list separates substantive implementation and device-dependent verification
 
 ## Required before Chrome Web Store submission
 
+- [ ] Set the GitHub repository description to `Dark mode and private margin notes for Substack writers.`
+- [ ] Add repository topics: `substack`, `chrome-extension`, `dark-mode`, `writing-tools`, and `annotations`.
+- [ ] Add a repository social-preview image after the store artwork is ready.
+- [ ] Enable GitHub private vulnerability reporting if it is not already enabled.
 - [ ] Test the unpacked extension in the current authenticated Substack editor.
 - [ ] Confirm dark mode on new and saved drafts, dashboard-to-editor navigation, media, embeds, colour controls, preview, and printing.
 - [ ] Create, reply to, resolve, reopen, move, orphan, and manually reattach notes in a real draft.

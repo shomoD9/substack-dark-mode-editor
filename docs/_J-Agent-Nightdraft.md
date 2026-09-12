@@ -15,3 +15,6 @@
 - Created a store-listing draft with permission explanations, conservative data disclosures, support URLs, asset requirements, and reviewer instructions.
 - Separated device-dependent verification and substantive implementation into `docs/RELEASE-TODO.md` so this release-preparation pass does not imply unperformed product work.
 - Re-ran the complete automated suite, validated the manifest JSON, checked patch whitespace, and visually inspected the renamed popup after the changes.
+- Committed and pushed the release-preparation files to the existing public GitHub repository so the license, privacy policy, community files, and workflow are available to users.
+- Confirmed that GitHub recognizes the MIT license and that the pushed automated test workflow completed successfully.
+- Left GitHub description, topics, and social-preview settings in the release TODO because the local GitHub command-line session is no longer authenticated for repository-setting changes.
